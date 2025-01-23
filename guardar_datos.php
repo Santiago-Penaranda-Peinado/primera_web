@@ -1,21 +1,37 @@
-<!-- filepath: /C:/xampp/htdocs/primera_web/guardar_datos.php -->
 <?php
+// Configuración de la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "formulario_db";
+
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener los datos del formulario
-    $name = $_POST['name'];
+    $nombre = $_POST['nombre'];
     $email = $_POST['email'];
 
-    // Formatear los datos para guardarlos en un archivo de texto
-    $data = "Nombre: $name, Correo: $email" . PHP_EOL;
+    // Preparar y ejecutar la consulta SQL
+    $stmt = $conn->prepare("INSERT INTO datos (nombre, email) VALUES (?, ?)");
+    $stmt->bind_param("ss", $nombre, $email);
 
-    // Especificar el archivo donde se guardarán los datos
-    $file = 'datos.txt';
+    if ($stmt->execute()) {
+        echo "Datos guardados exitosamente.";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
 
-    // Guardar los datos en el archivo
-    file_put_contents($file, $data, FILE_APPEND | LOCK_EX);
-
-    // Redirigir al usuario a una página de confirmación o de vuelta al formulario
-    header("Location: gracias.html");
-    exit();
+    $stmt->close();
 }
+
+$conn->close();
+// Redirigir a la página de inicio
+header("Location: index.html");
+exit();
 ?>
