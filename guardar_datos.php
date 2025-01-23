@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 // Redirigir a la página de inicio
+sleep( 5); // Esperar 5 segundos
 header("Location: index.html");
 exit();
 ?>
