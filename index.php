@@ -67,6 +67,14 @@
       border-radius: 50%;
       pointer-events: none;
     }
+    .box {
+      background-color: lightcoral;
+      padding: 20px; /* Espacio interior */
+      margin: 20px; /* Espacio exterior */
+      border: 3px solid black;
+      text-align: center;
+      color: black;
+    }
   </style>
 
 </head>
@@ -152,36 +160,61 @@
   animateParticles(); // Iniciar animación, fin de función
 </script> 
 
-<form action="guardar_datos.php" method="post">   
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required>
+<div class ="title-box">
+  <h1>formulario para guardar datos</h1>
+</div>
 
-    <label for="email">correo electronico:</label>
-    <input type="email" id="email" name="email" required>
+<form action="guardar_datos.php" method="post">
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre" required>
 
-    <input type="submit" value="Enviar">
+  <label for="correo">Correo:</label>
+  <input type="email" id="email" name="email" required>
+
+  <input type="submit" value="Enviar">
 </form>
-</body>
-</html>
 
+<div class="box">
+  <h2>datos guardados</h2>
+  <table border="1">
+    <tr>
+      <th>ID</th>  
+      <th>Nombre</th>
+      <th>Correo</th>
+    </tr>
 
+    <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "formulario_db";
 
+    $conn = new mysqli($servername, $username, $password, $dbname); // Crear conexión
 
-
-<!DOCTYPE html>   
-<html>
-<head>
-  <title>Ejemplo de Padding y Margin</title>
-  <style>
-    .box {
-      background-color: lightcoral;
-      padding: 20px; /* Espacio interior */
-      margin: 20px; /* Espacio exterior */
-      border: 3px solid black;
+    if ($conn->connect_error) { // Verificar conexión, si falla, mostrar mensaje de error
+        die("Conexión fallida: " . $conn->connect_error); // Terminar la ejecución del script
     }
-  </style>
-</head>
-<body>
-  <div class="box">Contenido de la caja</div>
+
+    $sql = "SELECT id, nombre, email FROM datos"; // Consulta SQL, seleccionar id, nombre y correo de la tabla datos en la base de datos formulario_db 
+    $result = $conn->query($sql); // Ejecutar la consulta SQL, con el fin de obtener los resultados y almacenar el resultado en la variable $result 
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . $row["id"] . "</td><td>" . $row["nombre"] . "</td><td>" . $row["email"] . "</td></tr>"; // Mostrar los datos en una tabla usando el HTML correspondiente
+        }
+    } else {
+      echo "No se encontraron datos en la base de datos.";  
+    }
+
+    $conn->close();
+    ?>
+  </table>
+</div>
+
 </body>
 </html>
+
+
+
+
+
