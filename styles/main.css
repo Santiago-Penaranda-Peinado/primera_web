@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;/*tipo de letra de la pagina*/
+    background-color: lightblue ;/*color de fondo de la pagina*/
+    color: gray;/*color de la letra de la pagina*/
+    margin: 0;/*margen de la pagina*/
+    padding: 0;/*padding de la pagina*/
+}
+img {
+    width: 300px;/*ancho de la imagen*/
+    height: auto;/*alto de la imagen, como esta en auto, mantiene la proporcion, evitando deformaciones*/
+    display: block;/*hace que la imagen se muestre en bloque, es decir, que se muestre en una linea diferente, comportandose como un bloque*/
+    margin: 0 auto;/*centra la imagen horizontalmente */
+}
+form {
+    margin: 20px;/*margen del formulario*/
+}
+label, input {
+    display: block;/*hace que los elementos se muestren en bloque, es decir, que se muestren en una linea diferente, comportandose como un bloque*/
+    margin-bottom: 10px;/*margen inferior de los elementos*/
+}
+h1 + p {
+font-size: 2em; /* Tamaño de la letra */
+}
+h2 + p {
+font-size: 1.5em; /* Tamaño de la letra */
+}
+h3 + p {
+font-size: 1.17em; /* Tamaño de la letra */
+}
+h4 + p {
+font-size: 1em; /* Tamaño de la letra */
+}
+h5 + p {
+font-size: 0.83em; /* Tamaño de la letra */
+}
+h6 + p {
+font-size: 0.67em; /* Tamaño de la letra */
+}
+.title-box{
+background-color: white; /* Color de fondo */
+border: 2px solid black; /* Borde */
+padding: 10px; /* Espacio interior */
+margin: 20px; /* Espacio exterior */
+text-align: center; /* Alinear texto al centro */
+margin: 20px auto; /* Centrar horizontalmente */
+width: fit-content; /* Ancho del contenedor */
+}
+.particle-container {
+position: relative;
+width: 600px;
+height: 400px;
+border: 2px solid black;
+margin: 50px auto;
+overflow: hidden;
+background-color: lightgray;
+}
+.particle{
+position: absolute;
+width: 20px;
+height: 20px;
+background-color: chocolate;
+border-radius: 50%;
+pointer-events: none;
+}
+.box {
+background-color: lightcoral;
+padding: 20px; /* Espacio interior */
+margin: 20px; /* Espacio exterior */
+border: 3px solid black;
+text-align: center;
+color: black;
+}

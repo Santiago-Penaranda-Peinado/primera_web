@@ -1,81 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet" href="styles/main.css">
+
   <title>Mi primera página web tilin</title>
-  <style>
-    body {
-        font-family: Arial, sans-serif;/*tipo de letra de la pagina*/
-        background-color: lightblue ;/*color de fondo de la pagina*/
-        color: gray;/*color de la letra de la pagina*/
-        margin: 0;/*margen de la pagina*/
-        padding: 0;/*padding de la pagina*/
-    }
-    img {
-        width: 300px;/*ancho de la imagen*/
-        height: auto;/*alto de la imagen, como esta en auto, mantiene la proporcion, evitando deformaciones*/
-        display: block;/*hace que la imagen se muestre en bloque, es decir, que se muestre en una linea diferente, comportandose como un bloque*/
-        margin: 0 auto;/*centra la imagen horizontalmente */
-    }
-    form {
-        margin: 20px;/*margen del formulario*/
-    }
-    label, input {
-        display: block;/*hace que los elementos se muestren en bloque, es decir, que se muestren en una linea diferente, comportandose como un bloque*/
-        margin-bottom: 10px;/*margen inferior de los elementos*/
-    }
-    h1 + p {
-      font-size: 2em; /* Tamaño de la letra */
-    }
-    h2 + p {
-      font-size: 1.5em; /* Tamaño de la letra */
-    }
-    h3 + p {
-      font-size: 1.17em; /* Tamaño de la letra */
-    }
-    h4 + p {
-      font-size: 1em; /* Tamaño de la letra */
-    }
-    h5 + p {
-      font-size: 0.83em; /* Tamaño de la letra */
-    }
-    h6 + p {
-      font-size: 0.67em; /* Tamaño de la letra */
-    }
-    .title-box{
-      background-color: white; /* Color de fondo */
-      border: 2px solid black; /* Borde */
-      padding: 10px; /* Espacio interior */
-      margin: 20px; /* Espacio exterior */
-      text-align: center; /* Alinear texto al centro */
-      margin: 20px auto; /* Centrar horizontalmente */
-      width: fit-content; /* Ancho del contenedor */
-    }
-    .particle-container {
-      position: relative;
-      width: 600px;
-      height: 400px;
-      border: 2px solid black;
-      margin: 50px auto;
-      overflow: hidden;
-      background-color: lightgray;
-    }
-    .particle{
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: chocolate;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-    .box {
-      background-color: lightcoral;
-      padding: 20px; /* Espacio interior */
-      margin: 20px; /* Espacio exterior */
-      border: 3px solid black;
-      text-align: center;
-      color: black;
-    }
-  </style>
 
 </head>
 <body>
@@ -105,60 +34,6 @@
 <a href="https://www.facebook.com/santiago.penaranda.75">facebook del mayor tilin</a>
 
 <div class="particle-container" id="particle-container"></div> <!-- Contenedor de las particulas -->
-<script>
-  const container = document.getElementById('particle-container');
-  const particles = [];
-
-  container.addEventListener('mousemove', (e) => {
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const speed = Math.sqrt(e.movementX * e.movementX + e.movementY * e.movementY);
-
-    const particle = document.createElement('div');
-    particle.classList.add('particle');
-    particle.style.left = `${x}px`;
-    particle.style.top = `${y}px`;
-
-    const direction = Math.random() * 2 * Math.PI;
-    const velocityX = Math.cos(direction) * speed;
-    const velocityY = Math.sin(direction) * speed;
-
-    container.appendChild(particle);
-    particles.push( {element: particle, velocityX, velocityY});
-
-    setTimeout(() => {
-      particle.remove();
-      particles.shift();
-    }, 10000);
-  });
-
-  function animateParticles() {
-    particles.forEach(p => {
-      const rect = container.getBoundingClientRect();
-      const particleRect = p.element.getBoundingClientRect();
-        let x = parseFloat(p.element.style.left);
-        let y = parseFloat(p.element.style.top);
-
-        x += p.velocityX * 0.1;
-        y += p.velocityY * 0.1;
-
-        if (x <= 0 || x >= rect.width - particleRect.width) {
-          p.velocityX *= -1;
-        }
-        if (y <= 0 || y >= rect.height - particleRect.height) {
-          p.velocityY *= -1;
-        }
-
-        p.element.style.left = `${x}px`;
-        p.element.style.top = `${y}px`;
-    })
-
-    requestAnimationFrame(animateParticles);
-  }
-
-  animateParticles(); // Iniciar animación, fin de función
-</script> 
 
 <div class ="title-box">
   <h1>formulario para guardar datos</h1>
@@ -211,6 +86,7 @@
   </table>
 </div>
 
+<script src="scripts/particles.js"></script>
 </body>
 </html>
 
