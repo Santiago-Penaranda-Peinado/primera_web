@@ -30,7 +30,7 @@
   <h6> hola </h6>
   <p>Este es mi sextoパrrafo tilina.</p>
 
-<img src="perrillo.jpeg" alt="pichiscv">
+<img src="images/perrillo.jpeg" alt="pichiscv">
 <a href="https://www.facebook.com/santiago.penaranda.75">facebook del mayor tilin</a>
 
 <div class="particle-container" id="particle-container"></div> <!-- Contenedor de las particulas -->
@@ -39,7 +39,7 @@
   <h1>formulario para guardar datos</h1>
 </div>
 
-<form action="guardar_datos.php" method="post">
+<form action="config/guardar_datos.php" method="post">
   <label for="nombre">Nombre:</label>
   <input type="text" id="nombre" name="nombre" required>
 
